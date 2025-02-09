@@ -29,7 +29,7 @@ const MainLayout = () => {
         {/* main content */}
         <ResizablePanel
           defaultSize={isMobile ? 80 : 60}
-          className="bg-zinc-900"
+          className="bg-zinc-900 rounded-md"
         >
           <Outlet />
         </ResizablePanel>
