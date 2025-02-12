@@ -42,7 +42,7 @@ export const createSong = async (req, res, next) => {
     await song.save();
 
     if (albumId) {
-      await Album.findByIdandUpdate(albumId, {
+      await Album.findByIdAndUpdate(albumId, {
         $push: { songs: song._id },
       });
     }
@@ -61,7 +61,7 @@ export const deleteSong = async (req, res, next) => {
     const song = await Song.findById(id);
 
     if (song.albumId) {
-      await Album.findByIdandUpdate(song.albumId, {
+      await Album.findByIdAndUpdate(song.albumId, {
         $pull: { songs: song._id },
       });
     }
@@ -101,7 +101,7 @@ export const createAlbum = async (req, res, next) => {
 export const deleteAlbum = async (req, res, next) => {
   try {
     const { id } = req.params;
-    await Song.deleteMant({ albumId: id });
+    await Song.deleteMany({ albumId: id });
     await Album.findByIdAndDelete(id);
 
     res.status(200).json({ message: "Album deleted successfully" });
