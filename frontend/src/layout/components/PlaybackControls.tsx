@@ -99,14 +99,6 @@ const PlaybackControls = () => {
             <Button
               size="icon"
               variant="ghost"
-              className="inline-flex hover:text-white text-zinc-400"
-            >
-              <Shuffle className="h-4 w-4" />
-            </Button>
-
-            <Button
-              size="icon"
-              variant="ghost"
               className="hover:text-white text-zinc-400"
               onClick={playPrevious}
               disabled={!currentSong}
@@ -135,13 +127,6 @@ const PlaybackControls = () => {
             >
               <SkipForward className="h-4 w-4" />
             </Button>
-            <Button
-              size="icon"
-              variant="ghost"
-              className="inline-flex hover:text-white text-zinc-400"
-            >
-              <Repeat className="h-4 w-4" />
-            </Button>
           </div>
 
           <div className="flex items-center gap-2 w-full">
@@ -160,21 +145,6 @@ const PlaybackControls = () => {
         </div>
         {/* volume controls */}
         <div className="hidden md:flex items-center gap-4 min-w-[180px] w-[30%] justify-end">
-          <Button
-            size="icon"
-            variant="ghost"
-            className="hover:text-white text-zinc-400"
-          >
-            <Mic2 className="h-4 w-4" />
-          </Button>
-          <Button
-            size="icon"
-            variant="ghost"
-            className="hover:text-white text-zinc-400"
-          >
-            <ListMusic className="h-4 w-4" />
-          </Button>
-
           <div className="flex items-center gap-2">
             <Button
               size="icon"
