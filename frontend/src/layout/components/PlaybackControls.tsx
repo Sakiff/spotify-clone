@@ -12,6 +12,8 @@ import {
   SkipBack,
   SkipForward,
   Volume1,
+  Volume2,
+  VolumeOff,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -58,6 +60,13 @@ const PlaybackControls = () => {
   const handleSeek = (value: number[]) => {
     if (audioRef.current) {
       audioRef.current.currentTime = value[0];
+    }
+  };
+
+  const handleVolumeOff = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0;
+      setVolume(0);
     }
   };
 
@@ -179,8 +188,15 @@ const PlaybackControls = () => {
               size="icon"
               variant="ghost"
               className="hover:text-white text-zinc-400"
+              onClick={handleVolumeOff}
             >
-              <Volume1 className="h-4 w-4" />
+              {volume >= 50 ? (
+                <Volume2 className="h-4 w-4" />
+              ) : volume === 0 ? (
+                <VolumeOff className="h-4 w-4" />
+              ) : (
+                <Volume1 className="h-4 w-4" />
+              )}
             </Button>
 
             <Slider

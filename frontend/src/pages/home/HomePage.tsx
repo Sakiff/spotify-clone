@@ -15,6 +15,7 @@ const HomePage = () => {
     fetchFeaturedSongs,
     fetchMadeForYouSongs,
     fetchTrendingSongs,
+    getAllSongs,
   } = useMusicStore();
 
   const { initializeQueue } = usePlayerStore();
@@ -31,8 +32,7 @@ const HomePage = () => {
       featuredSongs.length > 0 &&
       trendingSongs.length > 0
     ) {
-      const allSongs = [...featuredSongs, ...madeForYouSongs, ...trendingSongs];
-      initializeQueue(allSongs);
+      initializeQueue(getAllSongs());
     }
   }, [initializeQueue, madeForYouSongs, trendingSongs, featuredSongs]);
 

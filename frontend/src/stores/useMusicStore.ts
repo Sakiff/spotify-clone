@@ -23,9 +23,10 @@ interface MusicStore {
   fetchSongs: () => Promise<void>;
   deleteSong: (id: string) => Promise<void>;
   deleteAlbum: (id: string) => Promise<void>;
+  getAllSongs: () => Song[];
 }
 
-export const useMusicStore = create<MusicStore>((set) => ({
+export const useMusicStore = create<MusicStore>((set, get) => ({
   albums: [],
   songs: [],
   isLoading: false,
@@ -39,6 +40,13 @@ export const useMusicStore = create<MusicStore>((set) => ({
     totalAlbums: 0,
     totalUsers: 0,
     totalArtists: 0,
+  },
+  getAllSongs: () => {
+    const state = get();
+    return state.featuredSongs.concat(
+      state.madeForYouSongs,
+      state.trendingSongs
+    );
   },
 
   deleteAlbum: async (id) => {
