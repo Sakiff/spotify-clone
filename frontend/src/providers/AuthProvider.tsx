@@ -21,6 +21,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const initAuth = async () => {
+      if (!userId) return;
       try {
         const token = await getToken();
         updateApiToken(token);
