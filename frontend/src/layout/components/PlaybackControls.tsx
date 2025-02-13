@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { usePlayerStore } from "@/stores/usePlayerStore";
 import {
-  Laptop2,
   ListMusic,
   Mic2,
   Pause,
@@ -174,13 +173,6 @@ const PlaybackControls = () => {
             className="hover:text-white text-zinc-400"
           >
             <ListMusic className="h-4 w-4" />
-          </Button>
-          <Button
-            size="icon"
-            variant="ghost"
-            className="hover:text-white text-zinc-400"
-          >
-            <Laptop2 className="h-4 w-4" />
           </Button>
 
           <div className="flex items-center gap-2">
