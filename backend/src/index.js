@@ -4,6 +4,7 @@ import { clerkMiddleware } from "@clerk/express";
 import fileUpload from "express-fileupload";
 import path from "path";
 import cors from "cors";
+import fs from "fs";
 import cron from "node-cron";
 
 import { connectDB } from "./lib/db.js";
