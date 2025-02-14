@@ -1,16 +1,14 @@
 import { axiosInstance } from "@/lib/axios";
-import { Loader } from "lucide-react";
-import { useAuth } from "@clerk/clerk-react";
-import React, { useEffect, useState } from "react";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useChatStore } from "@/stores/useChatStore";
+import { useAuth } from "@clerk/clerk-react";
+import { Loader } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const updateApiToken = (token: string | null) => {
-  if (token) {
+  if (token)
     axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  } else {
-    delete axiosInstance.defaults.headers.common["Authorization"];
-  }
+  else delete axiosInstance.defaults.headers.common["Authorization"];
 };
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -21,7 +19,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const initAuth = async () => {
-      if (!userId) return;
       try {
         const token = await getToken();
         updateApiToken(token);
@@ -30,15 +27,17 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           // init socket
           if (userId) initSocket(userId);
         }
-      } catch (error) {
+      } catch (error: any) {
         updateApiToken(null);
-        console.log("Error in authProvider", error);
+        console.log("Error in auth provider", error);
       } finally {
         setLoading(false);
       }
     };
 
     initAuth();
+
+    // clean up
     return () => disconnectSocket();
   }, [getToken, userId, checkAdminStatus, initSocket, disconnectSocket]);
 
@@ -48,7 +47,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         <Loader className="size-8 text-emerald-500 animate-spin" />
       </div>
     );
-  return <div>{children}</div>;
-};
 
+  return <>{children}</>;
+};
 export default AuthProvider;
