@@ -1,17 +1,4 @@
-import { axiosInstance } from "@/lib/axios";
-import { Loader } from "lucide-react";
-import { useAuth } from "@clerk/clerk-react";
-import React, { useEffect, useState } from "react";
-import { useAuthStore } from "@/stores/useAuthStore";
-import { useChatStore } from "@/stores/useChatStore";
-
-const updateApiToken = (token: string | null) => {
-  if (token) {
-    axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  } else {
-    delete axiosInstance.defaults.headers.common["Authorization"];
-  }
-};
+import React from "react";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return <div>{children}</div>;
